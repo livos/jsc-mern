@@ -3,13 +3,20 @@ const app = express();
 import dotenv from "dotenv";
 dotenv.config();
 
+import connectDB from "./db/connect.js";
+
+import authRouter from "./routes/authRoutes.js";
+
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
-import connectDB from "./db/connect.js";
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Welcome!");
 });
+
+app.use("/api/v1/auth", authRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
