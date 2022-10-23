@@ -1,12 +1,9 @@
 import User from "../models/User.js";
 
-const register = async (req, res, next) => {
-  try {
-    const user = await User.create(req.body);
-    res.status(201).json({ user });
-  } catch (error) {
-    next(error);
-  }
+const register = async (req, res) => {
+  // To avoid add try catch in every controller we use express-async-errors package in server.js
+  const user = await User.create(req.body);
+  res.status(201).json({ user });
 };
 
 const login = async (req, res) => {
