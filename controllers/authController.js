@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError } from "../errors/index.js";
 
-// Before using express-async-errors package
+// Without using express-async-errors package
 // const register = async (req, res, next) => {
 //   try {
 //     const user = await User.create(req.body);

@@ -13,6 +13,11 @@ import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 app.use(express.json());
+console.log("hello");
+console.log("hello");
+console.log("hello");
+console.log("hello");
+console.log("hello");
 
 app.get("/", (req, res) => {
   res.send("Welcome!");
