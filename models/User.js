@@ -37,4 +37,9 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+// Using Mongoose middleware to hash password, it is called before we "save" a document
+UserSchema.pre("save", function () {
+  console.log(this.password);
+});
+
 export default mongoose.model("User", UserSchema);
