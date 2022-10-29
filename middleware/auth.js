@@ -1,7 +1,11 @@
-const auth = async (req, res, next) => {
-  const authHeaders = req.headers.authorization;
+import { UnAuthenticatedError } from "../errors/index.js";
 
-  console.log(authHeaders);
+const auth = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  console.log(authHeader);
+  if (!authHeader) {
+    throw new UnAuthenticatedError("Authentication invalid");
+  }
   next();
 };
 
