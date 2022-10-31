@@ -38,7 +38,13 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // axios
-  axios.defaults.headers.common["Authorization"] = `Bearer ${state.token}`;
+  // can add default values sent to every single requests. here api path and bearer token
+  const authFetch = axios.create({
+    baseURL: "/api/v1",
+    headers: {
+      Authorization: `Bearer ${state.token}`,
+    },
+  });
 
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
@@ -117,10 +123,7 @@ const AppProvider = ({ children }) => {
 
   const updateUser = async (currentUser) => {
     try {
-      const { data } = await axios.patch(
-        "/api/v1/auth/updateUser",
-        currentUser
-      );
+      const { data } = await authFetch.patch("/auth/updateUser", currentUser);
       // the problem with adding the bearer token in any request with axios.defaults.headers.common["Authorization"]
       // is that will be sent with ALL requests, including those to other API like below
       const { data: tours } = await axios.get(
