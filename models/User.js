@@ -42,8 +42,8 @@ const UserSchema = new mongoose.Schema({
 
 // Using Mongoose middleware to hash password, it is called before we "save" a document
 UserSchema.pre("save", async function () {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  // const salt = await bcrypt.genSalt(10);
+  // this.password = await bcrypt.hash(this.password, salt);
 });
 
 UserSchema.methods.createJWT = function () {
