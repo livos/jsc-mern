@@ -14,9 +14,10 @@ const AddJob = () => {
     jobTypeOptions,
     status,
     statusOptions,
+    handleChange,
   } = useAppContext();
 
-  const hanleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!position || !company || !jobLocation) {
       displayAlert();
@@ -28,7 +29,7 @@ const AddJob = () => {
   const handleJobInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(`${name}:${value}`);
+    handleChange({ name, value });
   };
 
   return (
@@ -79,7 +80,7 @@ const AddJob = () => {
             <button
               type="submit"
               className="btn btn-block submit-btn"
-              onClick={hanleSubmit}
+              onClick={handleSubmit}
             >
               submit
             </button>
