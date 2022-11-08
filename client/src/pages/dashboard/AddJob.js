@@ -18,6 +18,7 @@ const AddJob = () => {
     handleChange,
     clearValues,
     createJob,
+    editJob,
   } = useAppContext();
 
   const handleSubmit = (e) => {
@@ -26,8 +27,9 @@ const AddJob = () => {
       displayAlert();
       return;
     }
+
     if (isEditing) {
-      // eventually editJob()
+      editJob();
       return;
     }
     createJob();
