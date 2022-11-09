@@ -38,11 +38,15 @@ const updateJob = async (req, res) => {
     throw new NotFoundError(`No job with id:${jobId}`);
   }
 
-  // check permissions
+  // Note that findOneAndUpdate (opposite to save) does not fire any hook
+  // since here we don't use a hook it does not matter
   const updatedJob = await Job.findOneAndUpdate({ _id: jobId }, req.body, {
     new: true,
     runValidators: true,
   });
+
+  // check permissions
+
   res.status(StatusCodes.OK).json({ updatedJob });
 };
 
