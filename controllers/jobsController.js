@@ -39,10 +39,6 @@ const updateJob = async (req, res) => {
     throw new NotFoundError(`No job with id:${jobId}`);
   }
 
-  // check permissions
-  console.log(typeof req.user.userId);
-  console.log(typeof job.createdBy);
-
   checkPermissions(req.user, job.createdBy);
 
   // Note that findOneAndUpdate (opposite to save) does not fire any hook
@@ -56,7 +52,18 @@ const updateJob = async (req, res) => {
 };
 
 const deleteJob = async (req, res) => {
-  res.send("deleteJob job");
+  const { id: jobId } = req.params;
+
+  const job = await Job.findOne({ _id: jobId });
+
+  if (!job) {
+    throw new NotFoundError(`No job with id:${jobId}`);
+  }
+
+  checkPermissions(req.user, job.createdBy);
+
+  await job.remove();
+  res.status(StatusCodes.OK).json({ msg: "Success! Job removed" });
 };
 
 const showStats = async (req, res) => {
