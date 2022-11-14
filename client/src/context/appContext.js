@@ -178,7 +178,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: UPDATE_USER_BEGIN });
     try {
       const { data } = await authFetch.patch("/auth/updateUser", currentUser);
-      const { user, location, loken } = data;
+      const { user, location, token } = data;
 
       dispatch({
         type: UPDATE_USER_SUCCESS,
