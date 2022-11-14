@@ -61,6 +61,11 @@ const initialState = {
   page: 1,
   stats: {},
   monthlyApplications: [],
+  search: "",
+  searchStatus: "all",
+  searchType: "all",
+  sort: "latest",
+  sortOptions: ["latest", "oldest", "a-z", "z-a"],
 };
 
 const AppContext = React.createContext();
@@ -302,6 +307,7 @@ const AppProvider = ({ children }) => {
       console.log(error.response);
       // logoutuser
     }
+    clearAlert();
   };
 
   return (
