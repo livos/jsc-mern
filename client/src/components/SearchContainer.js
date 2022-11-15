@@ -39,7 +39,7 @@ const SearchContainer = () => {
           />
           {/* search by status */}
           <FormRowSelect
-            lagelText="status"
+            labelText="status"
             name="searchStatus"
             value={searchStatus}
             handleChange={handleSearch}
@@ -47,7 +47,7 @@ const SearchContainer = () => {
           />
           {/* search by type */}
           <FormRowSelect
-            lagelText="type"
+            labelText="type"
             name="searchType"
             value={searchType}
             handleChange={handleSearch}
