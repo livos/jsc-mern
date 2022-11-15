@@ -62,7 +62,7 @@ const SearchContainer = () => {
           />
           <button
             className="btn btn-block btn-danger"
-            disables={isLoading}
+            disabled={isLoading}
             onClick={handleSubmit}
           >
             clear filters
