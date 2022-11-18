@@ -3,7 +3,7 @@ import { useAppContext } from "../context/appContext";
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 
 const PageBtnContainer = () => {
-  const { numOfPages, page } = useAppContext();
+  const { numOfPages, page, changePage } = useAppContext();
 
   const pages = Array.from({ length: numOfPages }, (_, index) => {
     return index + 1;
@@ -29,7 +29,7 @@ const PageBtnContainer = () => {
               type="button"
               className={pageNumber === page ? "pageBtn active" : "pageBtn"}
               key={pageNumber}
-              onClick={() => console.log("change page")}
+              onClick={() => changePage(pageNumber)}
             >
               {pageNumber}
             </button>
