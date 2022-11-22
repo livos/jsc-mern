@@ -9,7 +9,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import path from "path";
 
-import helmet from "helmer";
+import helmet from "helmet";
 import xss from "xss-clean";
 import mongoSanitaze from "express-mongo-sanitize";
 

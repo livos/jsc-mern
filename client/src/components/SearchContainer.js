@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { FormRow, FormRowSelect } from ".";
 import { useAppContext } from "../context/appContext";
+import { useState, useMemo } from "react";
 
 const SearchContainer = () => {
+  const [localSearch, setLocalSearch] = useState("");
   const {
     isLoading,
     search,
@@ -17,7 +19,6 @@ const SearchContainer = () => {
   } = useAppContext();
 
   const handleSearch = (e) => {
-    if (isLoading) return;
     handleChange({ name: e.target.name, value: e.target.value });
   };
 
@@ -34,8 +35,8 @@ const SearchContainer = () => {
           <FormRow
             type="text"
             name="search"
-            value={search}
-            handleChange={handleSearch}
+            value={localSearch}
+            handleChange={(e) => setLocalSearch(e.target.value)}
           />
           {/* search by status */}
           <FormRowSelect
