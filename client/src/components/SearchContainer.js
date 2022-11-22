@@ -26,6 +26,20 @@ const SearchContainer = () => {
     e.preventDefault();
     clearFilters();
   };
+
+  // Lodash library debounce function could do the same
+  // easely
+  const debounce = () => {
+    let timeoutId;
+    return (e) => {
+      setLocalSearch(e.target.value);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        handleChange({ name: e.target.name, value: e.target.value });
+      }, 1000);
+    };
+  };
+  const optimizedDebounce = useMemo(() => debounce(), []);
   return (
     <Wrapper>
       <form className="form">
@@ -36,7 +50,7 @@ const SearchContainer = () => {
             type="text"
             name="search"
             value={localSearch}
-            handleChange={(e) => setLocalSearch(e.target.value)}
+            handleChange={optimizedDebounce}
           />
           {/* search by status */}
           <FormRowSelect
