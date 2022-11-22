@@ -9,6 +9,10 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import path from "path";
 
+import helmet from "helmer";
+import xss from "xss-clean";
+import mongoSanitaze from "express-mongo-sanitize";
+
 import connectDB from "./db/connect.js";
 
 import authRouter from "./routes/authRoutes.js";
@@ -25,6 +29,11 @@ if (process.env.NODE_ENV !== "production") {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json());
+
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitaze());
+
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobsRouter);
