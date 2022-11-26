@@ -21,6 +21,6 @@ import authenticateUser from "../middleware/auth.js";
 router.route("/register").post(apiLimiter, register);
 router.route("/login").post(apiLimiter, login);
 router.route("/updateUser").patch(authenticateUser, updateUser);
-router.route("/getCurrentUser").patch(authenticateUser, getCurrentUser);
+router.route("/getCurrentUser").get(authenticateUser, getCurrentUser);
 
 export default router;

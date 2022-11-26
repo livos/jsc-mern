@@ -294,14 +294,14 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CHANGE_PAGE, payload: page });
   };
 
-  const getCurrentUSer = async () => {
+  const getCurrentUser = async () => {
     dispatch({ type: GET_CURRENT_USER_BEGIN });
     try {
-      const { data } = await autoFetch("/auth/getCurrentUser");
+      const { data } = await authFetch("/auth/getCurrentUser");
       const { user, location } = data;
       dispatch({
         type: GET_CURRENT_USER_SUCCESS,
-        paylaod: { user, location },
+        payload: { user, location },
       });
     } catch (error) {
       if (error.response.status === 401) return;
@@ -309,7 +309,7 @@ const AppProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getCurrentUSer();
+    getCurrentUser();
   }, []);
 
   return (
